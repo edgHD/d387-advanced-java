@@ -29,9 +29,14 @@ export class AppComponent implements OnInit{
   currentCheckOutVal!:string;
 
   welcomeMessages: string[] = [];
+  dateTimes: string[] = [];
 
   getWelcomeMessage(): Observable<string[]> {
     return this.httpClient.get<string[]>(this.baseURL + "/api/welcome");
+  }
+
+  getDateTime(): Observable<string[]> {
+    return this.httpClient.get<string[]>(this.baseURL + "/api/presentation");
   }
 
     ngOnInit(){
@@ -52,6 +57,10 @@ export class AppComponent implements OnInit{
 
       this.getWelcomeMessage().subscribe(message => {
         this.welcomeMessages = message;
+      });
+
+      this.getDateTime().subscribe(dateTime => {
+        this.dateTimes = dateTime;
       });
     }
 
